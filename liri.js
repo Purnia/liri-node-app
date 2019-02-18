@@ -17,7 +17,7 @@ var spotify = new Spotify(keys.spotify);
 // var bandsInTown = (keys.bandsInTown);
 
 var Input = process.argv[2];
-var query = process.argv.slice(3).join("")
+var query = process.argv.slice(3).join(" ")
 
 //determines the command select
 //based on command runs appropriate function call
@@ -55,7 +55,7 @@ function concertThis() {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             // Place the response.data into a variable, concertData.
             for (var i = 0; i < response.data.length; i++) {
                 console.log("Venue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + response.data[i].venue.region + "\nDate of Event: " + response.data[i].datetime);
@@ -116,12 +116,36 @@ function doWhatItSays(){
       
         // We will then print the contents of data
         console.log(data);
-        var request = data.split(",");
-        query= request[1];
+        var dataArr = data.split(",");
+        Input = dataArr[0];
+        query= dataArr[1];
+
         console.log(query);
-        if(request[0] === "concert-this"){
+        if (Input === "concert-this") {
+            console.log("upcoming band performances");
             concertThis(query);
+        
         }
+        
+        else if (Input === "spotify-this-song") {
+            console.log("Here is info on your song! ");
+            spotifyThisSong(query);
+        }
+        
+        else if (Input === "movie-this") {
+            console.log("here is info on your movie! ");
+            movieThis(query);
+        }
+        
+        else if (Input === "do-what-it-says") {
+            console.log("your wish is my command! ");
+            doWhatItSays();
+        }
+        
+        else {
+            console.log("Your request is invalid");
+        }
+        
 
 
       
