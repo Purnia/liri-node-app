@@ -7,8 +7,12 @@ var moment = require('moment');
 var fs = require("fs");
 
 //spotify
-var Spotify = require("node-spotify-api");
-var spotify = new Spotify(keys.spotify);
+// var Spotify = require("node-spotify-api");
+// // var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify({
+//     id:a33262c8fac44c83bf404c085a190c4b,
+//     secret:cf8607e581104dbdbebc025f288bcf64
+//   });
 
 
 
@@ -58,7 +62,7 @@ function concertThis() {
             // console.log(response.data);
             // Place the response.data into a variable, concertData.
             for (var i = 0; i < response.data.length; i++) {
-                console.log("Venue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + response.data[i].venue.region + "\nDate of Event: " + response.data[i].datetime);
+                console.log("Venue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + response.data[i].venue.region + "\nDate of Event: " + moment(response.data[i].datetime).format("MM/DD/YYYY"));
             }
         }
     );
@@ -68,20 +72,25 @@ function concertThis() {
 //"spotify-this-song" function
 //run request to spotify API with the band specified
 
-function spotifyThisSong(){
-    spotify.search({ type: 'track', query: query })
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
- var songData = response.tracks.items;
- for ( var i = 0; i < songData.length; i++){
+// function spotifyThisSong(){
 
- }
+//     if (!query){
+//         query = "Ace of Base";
+//     }
 
-}
+//     spotify.search({ type: 'track', query: query })
+//   .then(function(response) {
+//     console.log(response);
+//   })
+//   .catch(function(err) {
+//     console.log(err);
+//   });
+//  var songData = response.tracks.items;
+//  for ( var i = 0; i < songData.length; i++){
+
+//  }
+
+// }
 
 //"movie-this" function
 // run a request with axios to the OMBD API with the movie specified
