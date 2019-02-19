@@ -7,12 +7,9 @@ var moment = require('moment');
 var fs = require("fs");
 
 //spotify
-// var Spotify = require("node-spotify-api");
-// // var spotify = new Spotify(keys.spotify);
-// var spotify = new Spotify({
-//     id:a33262c8fac44c83bf404c085a190c4b,
-//     secret:cf8607e581104dbdbebc025f288bcf64
-//   });
+var Spotify = require("node-spotify-api");
+var spotify = new Spotify(keys.spotify);
+
 
 
 
@@ -69,28 +66,31 @@ function concertThis() {
 
 }
 
-//"spotify-this-song" function
-//run request to spotify API with the band specified
+// "spotify-this-song" function
+// run request to spotify API with the band specified
 
-// function spotifyThisSong(){
+function spotifyThisSong(){
 
-//     if (!query){
-//         query = "Ace of Base";
-//     }
+    if (!query){
+        query = "The Sign Ace of Base";
+    }
 
-//     spotify.search({ type: 'track', query: query })
-//   .then(function(response) {
-//     console.log(response);
-//   })
-//   .catch(function(err) {
-//     console.log(err);
-//   });
-//  var songData = response.tracks.items;
-//  for ( var i = 0; i < songData.length; i++){
+  spotify.search({ type: 'track', query: query, limit: 5 })
+  .then(function(response) {
+    // console.log(response);
+    var songData = response.tracks.items;
+    // console.log(songData[0]);
+    for ( var i = 0; i < songData.length; i++){
+        // console.log(songData[i]);
+        console.log("Artist: " + songData[i].album.artists[0].name + "\nSong Name: " + songData[i].name + "\n Preview: " + songData[i].album.external_urls.spotify + "\n Album: " + songData[i].album.name);
+ }
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+ 
 
-//  }
-
-// }
+}
 
 //"movie-this" function
 // run a request with axios to the OMBD API with the movie specified
