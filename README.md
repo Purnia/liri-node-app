@@ -6,7 +6,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 Users can run following commands to serach for results:
  1. concert-this: This will search the Bands in Town Artist Events API using Axios and return the following results
- * Name of the venue
+    * Name of the venue
 
      * Venue location
 
